@@ -6,7 +6,7 @@ from urllib.parse import quote
 
 directory = sys.argv[1]
 prefix = sys.argv[2] if sys.argv[2] != "local" else ""
-thumb_prefix = sys.argv[2] if sys.argv[2] != "local" else ""
+thumb_prefix = sys.argv[3] if sys.argv[3] != "local" else ""
 content = ""
 
 with open("template.html", "r") as f:
