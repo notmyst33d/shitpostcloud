@@ -15,6 +15,8 @@ with open("template.html", "r") as f:
 files = os.listdir(directory)
 files.sort(key=lambda x: os.path.getmtime(f"{directory}/{x}"))
 for file in reversed(files):
+    if file == "index.html" or file == "thumbs":
+        continue
     content += f"<a href=\"{prefix}{quote(file)}\">"
     if file.endswith(".mp4"):
         file_gif = file.replace(".mp4", ".gif")
