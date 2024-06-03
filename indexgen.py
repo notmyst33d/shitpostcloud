@@ -7,6 +7,7 @@ from urllib.parse import quote
 directory = sys.argv[1]
 prefix = sys.argv[2] if sys.argv[2] != "local" else ""
 thumb_prefix = sys.argv[3] if sys.argv[3] != "local" else ""
+ignore_files = sys.argv[4].split(",") if sys.argv[4] != "none" else ""
 content = ""
 
 with open("template.html", "r") as f:
@@ -15,7 +16,7 @@ with open("template.html", "r") as f:
 files = os.listdir(directory)
 files.sort(key=lambda x: os.path.getmtime(f"{directory}/{x}"))
 for file in reversed(files):
-    if file == "index.html" or file == "thumbs":
+    if file in ignore_files:
         continue
     content += f"<a href=\"{prefix}{quote(file)}\">"
     if file.endswith(".mp4"):
